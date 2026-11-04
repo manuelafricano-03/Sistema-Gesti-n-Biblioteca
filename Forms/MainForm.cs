@@ -55,28 +55,29 @@ public sealed class MainForm : Form
         _content.Controls.Add(control);
     }
 
-    private void ShowHome()
+   private void ShowHome()
+{
+    var panel = new Panel
     {
-        var panel = new Panel
-        {
-            Dock = DockStyle.Fill,
-            Padding = new Padding(0),
-            Margin = new Padding(0)
-        };
+        Dock = DockStyle.Fill,
+        Padding = new Padding(0),
+        Margin = new Padding(0)
+    };
 
-        {
-                };
-        var picture = new PictureBox
-        {
-            Image = Image.FromFile(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Forms", "Images", "fondo-biblioteca.png")),
-            SizeMode = PictureBoxSizeMode.StretchImage,
-            Dock = DockStyle.Fill
-        };
+    string rutaImagen = Path.GetFullPath(
+        Path.Combine(AppDomain.CurrentDomain.BaseDirectory,
+        @"..\..\..\Forms\Images\fondo-biblioteca.png"));
 
-        panel.Controls.AddRange(new Control[] {  picture });
-        picture.SendToBack();
-        SetContent(panel);
-    }
+    var picture = new PictureBox
+    {
+        Image = Image.FromFile(rutaImagen),
+        SizeMode = PictureBoxSizeMode.StretchImage,
+        Dock = DockStyle.Fill
+    };
+
+    panel.Controls.Add(picture);
+    SetContent(panel);
+}
 
     private void OpenModule(string title)
     {
